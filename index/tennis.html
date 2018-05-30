@@ -1,0 +1,172 @@
+<html>
+	<head>
+		<title>Tennis Anyone?</title>
+	</head>
+	
+	<body>
+		<p>Grab your racket!</p>
+		
+		<canvas id = "gameCanvas" width=600 height=800></canvas>
+		
+		<script>
+			var canvas;
+			var canvasContext;
+			
+			//ball position
+			var ballX = 300;
+			var ballY = 50;
+			var ballSpeedX = -1;
+			var ballSpeedY = 2;
+			var framerate = 30;
+			
+			var radius = 10;
+			
+			var player1Score = 0;
+			var player2Score = 0;
+			
+			var paddle1X = 300;
+			var paddle2X = 250;
+			var PADDLE_THICKNESS = 100;
+			var PADDLE_HEIGHT = 16;
+			
+			//calculate mouse posistion
+			function calculateMousePos(evt) {
+				var rect = canvas.getBoundingClientRect();
+				var root = document.documentElement;
+				var mouseX = evt.clientX - rect.left - root.scrollLeft;
+				var mouseY = evt.clientY - rect.top - root.scrollTop;
+				return{
+					x:mouseX, y:mouseY
+				};
+			}
+			
+			window.onload = function(){
+				canvas = document.getElementById('gameCanvas');
+				canvasContext = canvas.getContext('2d');
+				
+				setInterval(callEverything, 150/framerate);
+				
+				canvas.addEventListener('mousemove', function(evt) {
+					var mousePos = calculateMousePos(evt);
+					paddle1X = mousePos.x - (PADDLE_THICKNESS/2);
+				});
+			
+				
+				console.log("I am working!");
+			}
+			
+			function ballReset(){
+				ballSpeedX = -ballSpeedX;
+				ballX = canvas.width/2;
+				ballY = canvas.height/2;
+			}
+			function computerMovement() {
+				var paddle2XCenter = paddle2X + (PADDLE_THICKNESS/2);
+				
+				if(paddle2XCenter < (ballX - 40)){
+					paddle2X = paddle2X + 6;
+				}
+				else if(paddle2XCenter > (ballX + 55)){
+					paddle2X = paddle2X - 6;
+				}
+			}
+			
+			function callEverything() {
+				moveEverything();
+				drawEverything();
+				
+			}
+			
+			function moveEverything(){
+				computerMovement();
+			if(ballX<0){
+				ballX = ballX + ballSpeedX;
+				if(ballX + 7.5 > canvas.width || ballX < 0){
+					ballSpeedX = ballSpeedX * -1;
+				}else{
+					//ballReset();
+					//player1Score++;
+				}
+				
+			}
+			
+			if(ballY>canvas.height){
+				
+				if(ballX > paddle1X && ballX<(paddle1X+PADDLE_THICKNESS)){
+					ballSpeedY = -ballSpeedY;
+				}
+				else {
+					ballReset();
+					player2Score++;
+				}
+				ballY = ballY + ballSpeedY;
+				
+					
+					
+				
+			
+		}
+		if(ballY<0){
+				
+				if(ballX > paddle2X && ballX<(paddle2X+PADDLE_THICKNESS)){
+					ballSpeedY = -ballSpeedY;
+				}
+				else {
+					ballReset();
+					player1Score++;
+				}
+				ballY = ballY + ballSpeedY;
+				
+					
+					
+				
+			
+			}
+		
+		//this is where the problem is
+			if(ballY<0){
+				ballSpeedY=-ballSpeedY;
+			}
+			if(ballY > canvas.height){
+				ballSpeedY = -ballSpeedY;
+			}
+			if(ballX > canvas.width){
+				ballSpeedX = -ballSpeedX;
+			}
+			ballX = ballX+ballSpeedX;
+			ballY = ballY+ballSpeedY;
+		}
+			
+			
+			function drawEverything() {
+				
+				console.log("Inside drawEverything");
+				
+				canvasContext.fillStyle = 'green';
+				canvasContext.fillRect(0,0,canvas.width,canvas.height);
+				
+				canvasContext.fillStyle = 'white';
+				canvasContext.fillRect(paddle1X,canvas.height-15,PADDLE_THICKNESS,PADDLE_HEIGHT);
+				
+				canvasContext.fillStyle = 'white';
+				canvasContext.fillRect(paddle2X,0,PADDLE_THICKNESS,PADDLE_HEIGHT);
+				
+				
+				
+				canvasContext.fillStyle = 'yellow';
+				canvasContext.beginPath();
+				canvasContext.arc(ballX,ballY,radius,0,Math.PI*2,true);
+				canvasContext.fill();
+				
+				canvasContext.fillStyle = 'white';
+				canvasContext.fillText(player1Score,100,100);
+				canvasContext.fillText(player2Score,canvas.width-100,100);
+				
+				
+				
+			}
+		</script>
+		
+		
+	</body>
+</html>

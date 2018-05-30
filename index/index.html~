@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alex Duval Gallery</title>
+	<style>
+		.Assignment1 {
+			float:left;
+			margin:5px;
+			border: 10px solid #215B63;
+			border-radius:10px;
+		}
+		.Assignment2 {
+			float:left;
+			margin:5px;
+			border: 10px solid #215B63;
+			border-radius:10px;
+		}
+		.Assignment3 {
+			float:left;
+			margin:5px;
+			border: 10px solid #215B63;
+			border-radius:10px;
+		}
+		.Assignment4 {
+			float:left;
+			margin:5px;
+			border: 10px solid #215B63;
+			border-radius:10px;
+		}
+		.Assignment5 {
+			float:left;
+			margin:5px;
+			border: 10px solid #215B63;
+			border-radius:10px;
+		}
+		.Assignment6 {
+			float:left;i
+			margin:5px;
+			border: 10px solid #215B63;
+			border-radius:10px;
+		h1 {
+		
+			font-family: Trebuchet MS;
+			color: #232855;
+		}
+    		
+		}
+	</style>
+  </head>
+  	<body style="background-color: #AAFFC7">
+		<h1 style="text-align:center;">Alex Duval's Homepage</h1>
+		
+		<div class="Assignment1">
+			<img src="images/Image01.JPG" alt="Bermuda">
+		</div>
+		
+		<div class="Assignment2">
+			<img src="images/Image02.JPG" alt="Bermuda2">
+		</div>
+		
+		<div class="Assignment3">
+			<img src="images/Image03.JPG" alt="Bermuda3">
+		</div>
+		
+		<div class="Assignment4">
+			<img src="images/Image04.JPG" alt="Bermuda4">
+		</div>
+		
+		<div class="Assignment5">
+			<img src="images/Image05.JPG" alt="Coach O'Brien">
+		</div>
+		
+		<div class="Assignment6">
+			<img src="images/Image06.JPG" alt="Golf">
+		</div>
+	</body>
+</html>
